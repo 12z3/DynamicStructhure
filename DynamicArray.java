@@ -71,7 +71,7 @@ public class DynamicArray extends Methods {
         }
         int removedEl = arr[index];
                                                         // От следващият след "index" елем. до последният.
-        for (int i = index + 1; i < arr.length; i++) {  // Тъйкато е "arr[i - 1] = arr[i]" то трябва "i = index + 1".
+        for (int i = index + 1; i < arr.length; i++) {  // Тъй като е "arr[i - 1] = arr[i]" то трябва "i = index + 1".
             arr[i - 1] = arr[i];             // Премества елементи на ЛЯВО, Започвайки от "index + 1" с една позиция.
         }                                    //arr[index + 1 - 1] = arr[index];
         // size--;
