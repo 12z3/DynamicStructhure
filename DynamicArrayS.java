@@ -3,7 +3,7 @@ package DynamicsStructhure;
 public class DynamicArrayS {
     private static final int FIRST_COUNT_ELEMENT = 0;
     int[] items;
-    int size = FIRST_COUNT_ELEMENT;                        //int size == Броя на елементите различни от 0-ла в масива.
+    int size = FIRST_COUNT_ELEMENT;                        //int size == Броя на елементите различни от 0-а в масива.
     int capacity;
 
     public DynamicArrayS(int item) {
@@ -69,8 +69,8 @@ public class DynamicArrayS {
 
     public int deleteElementFromIndex(int index) {   // Трябва да мога да трия само Валидни елементи. Елементи в size-a.
         int deletingEl = this.items[index];
-        if (!isValidIndexDel(index))
-            return -1;           // Ако size = 5, но capacity = 7 и искам да изтрия 6 елемент....?
+        if (!isValidIndexDel(index)) return -1;
+                                                    // Ако size = 5, но capacity = 7 и искам да изтрия 6 елемент....?
         shiftLeft(index);                           // ... Само ще ги премества на Ляво ли?
         this.size--;
         this.capacity = this.items.length - this.size;
