@@ -14,10 +14,10 @@ public class DynamicArray extends Methods {
      */
 
     public static boolean checkPosition(int[] arr) {
-        int size = arr.length - 1;
+        int size = arr.length;
         boolean isNoValidIndex = false;
         try {
-            if (size > arr.length + 1) {
+            if (size > arr.length) {
                 isNoValidIndex = true;
                 throw new ArrayIndexOutOfBoundsException();
             }
