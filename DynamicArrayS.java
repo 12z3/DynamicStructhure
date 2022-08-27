@@ -4,7 +4,7 @@ public class DynamicArrayS {
     private static final int FIRST_COUNT_ELEMENT = 0;
     int[] items;
     int size = FIRST_COUNT_ELEMENT;                        //int size == Броя на елементите различни от 0-а в масива.
-    int capacity;
+    int capacity;                                          // Общият брой на елементите в масива.
 
     public DynamicArrayS(int item) {
         this.items = new int[item];
@@ -25,7 +25,7 @@ public class DynamicArrayS {
         this.capacity = items.length - this.size;
     }
 
-    private boolean isValidIndexAdd(int index) {                   // "index >= size" Не може да трие нещо което е "0"
+    private boolean isValidIndexAdd(int index) {                   // "index >= size" Не може да трие нещо което е "0".
         if (index < 0 || index >= this.items.length || index < this.capacity) {
             System.out.print("Error, INDEX is invalid!\n");
             return false;
@@ -56,9 +56,9 @@ public class DynamicArrayS {
         this.items[this.size++] = element;
         this.capacity = this.items.length - this.size;
     }                              // Първо извършва действието, след това връща резултата и Едва след това увеличава -
-                                         // стойността на върнатия резултат с 1-а
+                                         // - стойността на върнатия резултат с 1-а.
     public int delete() {
-        int deletingEl = this.items[this.size - 1];           // "items[size - 1]"- Последният елемент в масива
+        int deletingEl = this.items[this.size - 1];           // "items[size - 1]"- Последният елемент в масива.
         this.items[this.size - 1] = 0;
         this.size--;
         this.capacity = this.items.length - this.size;
@@ -96,7 +96,7 @@ public class DynamicArrayS {
         for (int index = 0; index < this.size; index++) {// До -> "this.size". принтира само различните от 0-а елементи.
             System.out.print(this.items[index] + "");            // Принтирай до там докъдето има числа.
             if (index != this.size - 1) {                        // Aко индекса е различен от индекса на последният -
-                System.out.print(", ");                          // - елемент то початай ","
+                System.out.print(", ");                          // - елемент то початай ",".
             }
         }
         System.out.println("]");
