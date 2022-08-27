@@ -56,7 +56,7 @@ public class DynamicArrayS {
         this.items[this.size++] = element;
         this.capacity = this.items.length - this.size;
     }                              // Първо извършва действието, след това връща резултата и Едва след това увеличава -
-                                         // и Едва след това увеличава стойността на върнатия резултат с 1-а
+                                         // стойността на върнатия резултат с 1-а
     public int delete() {
         int deletingEl = this.items[this.size - 1];           // "items[size - 1]"- Последният елемент в масива
         this.items[this.size - 1] = 0;
@@ -79,12 +79,12 @@ public class DynamicArrayS {
     }
 
     private void shiftRight(int index) {
-        for (int i = this.items.length - 1; i > index; i--) {       // Когато премества на "Дясно" фор-а е "Обратен".
+        for (int i = this.items.length - 1; i > index; i--) {      // Когато премества на "Дясно" фор-а е "Обратен". ;)
             this.items[i] = this.items[i - 1];
         }
     }
 
-    private void shiftLeft(int index) {                       // Когато премества на "Ляво" фор-а е "Нормален".
+    private void shiftLeft(int index) {               // Когато премества на "Ляво" фор-а е "Нормален". - Ти да видиш...
         for (int i = index; i < this.items.length - 1; i++) {                     // {1,2,3,4,5,6}
             this.items[i] = this.items[i + 1];                    // 1-тo няма на къде да отиде при фор от 0 до "index"?
         }                                             // Но ако започне от "index" до "items.length" е друга бирата.
@@ -93,7 +93,7 @@ public class DynamicArrayS {
 
     public void print() {
         System.out.print("[");
-        for (int index = 0; index < this.size; index++) {        // До -> "this.size". принтира само различните от 0-а елементи.
+        for (int index = 0; index < this.size; index++) {// До -> "this.size". принтира само различните от 0-а елементи.
             System.out.print(this.items[index] + "");            // Принтирай до там докъдето има числа.
             if (index != this.size - 1) {                        // Aко индекса е различен от индекса на последният -
                 System.out.print(", ");                          // - елемент то початай ","
