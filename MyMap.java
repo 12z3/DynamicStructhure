@@ -1,12 +1,19 @@
 package task;
 
+import training.Methods;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class MyMap {
+public class MyMap extends Methods {
+
+    // mapH.entrySet() + "option == Alt" + "Enter" -> Iterate
+
     public static void main(String[] args) {
+
+        long startTime = getStartTime();
 
         Map<String, Integer> mapH = new HashMap<>(); // Не гарантира, че ще се разпечатат във реда в който са въведени.
         mapH.put("one", 1);                          // ... просто ги съхранява.
@@ -36,6 +43,6 @@ public class MyMap {
         for (Map.Entry<Integer, Integer> el: mapL.entrySet()){
             System.out.printf("%s -> %d%n", el.getKey(), el.getValue());
         }
-        
+        getEndTime(startTime);
     }
 }
