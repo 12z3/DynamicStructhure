@@ -1,9 +1,13 @@
 package dynamicsStructhure;
 
 public class bsPeakArray {
+
+    // https://leetcode.com/problems/peak-index-in-a-mountain-array/
+    // https://leetcode.com/problems/find-in-mountain-array/description/
+
     public static void main(String[] args) {
         //int[] x1 = {-4, -3, -2, -1, 0, 1, 5, 6, 7, 8, 5, 4, 3, 2, 1};
-        //           0   1   2   3  4  5  6  7  8  9  10 11 12 13 14
+        //             0   1   2   3  4  5  6  7  8  9  10 11 12 13 14
         //int[] x = {1, 2, 3, 4, 5, 3, 1};
         //int[] x = {1, 2, 3, 4, 5, 3, 1};
         // int[] x = {3, 5, 3, 2, 0};
@@ -13,8 +17,8 @@ public class bsPeakArray {
         //int[] x = {1, 2, 3, 2, 1, 0};
         //int[] x = {0, 3, 1};
         //int[] x = {1, 2, 3, 5, 6, 4, 2};
-//        System.out.println(bs(x));
-//        System.out.println(bs1(x));
+        //System.out.println(bs(x));
+        //System.out.println(bs1(x));
         //System.out.println(bs3(x, 2));
         System.out.println(findPeak(x));
         System.out.println(bsPeakArr(x, 1));
@@ -39,9 +43,9 @@ public class bsPeakArray {
         return ans;
     }
 
+    //  Дели масива на две и свива границите докато s == m
     private static int findPeak(int[] arr) {
         int s = 0, e = arr.length - 1, m;
-
         while (s != e) {
             m = s + ((e - s) / 2);
             if (arr[m] < arr[m + 1]) {
