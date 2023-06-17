@@ -6,12 +6,12 @@ public class bs {
     //https://leetcode.com/problems/search-in-rotated-sorted-array/
     public static void main(String[] args) {
         //int[] a = {0, 1, 2, 4, 5, 6, 7};
-        int target = 0;
+        int target = 1;
         //         0  1  2  3  4  5  6  7
         //int[] a = {4,5,6,7,0,1,2}; // 0
         //[] a = {1, 3}; // 1
-        //int[] a = {1, 3, 5}; // 1
-        int[] a = {4, 5, 6, 7, 0, 1, 2}; // 0
+        int[] a = {1,3,5,}; // 1
+        //int[] a = {4, 5, 6, 7, 0, 1, 2}; // 0
 
         // int[] b = {3, 4, 1, 2, 3};
         //int[] b = {5, 6, 7, 0, 1, 2, 4};
@@ -28,7 +28,7 @@ public class bs {
     private static int findElInRotatedArr(int[] nums, int target) {
         reversArr(nums, target);
         System.out.print(Arrays.toString(nums));
-        int peakIdx = findPeakIdx(nums, target), rHalf = 0, lHalf;
+        int peakIdx = findPeakIdx(nums), rHalf = 0, lHalf;
 
         lHalf = bs(nums, target, 0, peakIdx);
         if (lHalf == -1) {
@@ -51,7 +51,7 @@ public class bs {
         }
     }
 
-    private static int findPeakIdx(int[] a, int target) {                           // 3, 4, 1, 2, 3
+    private static int findPeakIdx(int[] a) {                           // 3, 4, 1, 2, 3
         int s = 1, e = a.length - 1, m;
         if (a.length == 1) return 0;
 
@@ -61,7 +61,7 @@ public class bs {
                 s = m + 1;
             } else if (a[m] < a[m - 1]) {
                 return m - 1;
-            } else e = m - 1;
+            } else e = m;
         }
         return (s == -1) ? 0 : s;
     }
