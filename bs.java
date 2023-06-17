@@ -3,6 +3,7 @@ package dynamicsStructhure;
 import java.util.Arrays;
 
 public class bs {
+    //https://leetcode.com/problems/search-in-rotated-sorted-array/
     public static void main(String[] args) {
         //int[] a = {0, 1, 2, 4, 5, 6, 7};
         int target = 0;
