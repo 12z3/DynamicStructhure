@@ -17,7 +17,7 @@ public class bsRange {
     private static int[] range(int[] a, int target) {
         int[] x = new int[2], z = {-1, -1};
 
-        int elIdx = midElIdx(a, target);
+        int elIdx = targetIdx(a, target);
         if (elIdx == -1) return z;
         System.out.print("mIdx = " + elIdx + "; ");
 //        int lIdx = findMinLIdx(a, target, 0, elIdx);
@@ -51,7 +51,7 @@ public class bsRange {
         return ans;
     }
 
-    private static int midElIdx(int[] a, int target) {
+    private static int targetIdx(int[] a, int target) {
         int s = 0, e = a.length - 1, m;
 
         while (s <= e) {
