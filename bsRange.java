@@ -12,8 +12,7 @@ public class bsRange {
     }
 
     private static int[] range(int[] a, int target) {
-        int[] x = new int[2];
-        int[] z = {-1, -1};
+        int[] x = new int[2], z = {-1, -1};
 
         int elIdx = midElIdx(a, target);
         if (elIdx == -1) return z;
