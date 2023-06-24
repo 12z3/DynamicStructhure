@@ -6,22 +6,23 @@ public class bsRange {
     public static void main(String[] args) {
         int[] a = {1, 3, 4, 5, 6, 7, 8, 11, 12, 13, 14, 45};
         int[] a2 = {1, 2, 3, 3, 3, 3, 3, 3, 12, 13, 14, 45};
-        int[] a1 = {1, 1, 3, 3, 3, 3, 12, 12, 12, 12, 12, 45};        // mIdx = 8; [6, 10]
+        int[] a1 = {1, 1, 3, 3, 3, 12, 12, 12, 12, 12, 12, 45};        // mIdx = 5; [5, 10]
 
-        System.out.println(Arrays.toString(range(a1, 1)));
+        System.out.println(Arrays.toString(range(a1, 12)));
     }
 
     private static int[] range(int[] a, int target) {
         int[] x = new int[2];
+        int[] z = {-1, -1};
 
         int elIdx = midElIdx(a, target);
-        if (elIdx == -1) return null;
+        if (elIdx == -1) return z;
         System.out.print("mIdx = " + elIdx + "; ");
-        //int lIdx = findMinLIdx(a, target, 0, elIdx);
-        //int rIdx = findMinRIdx(a, target, elIdx + 1, a.length);
+//        int lIdx = findMinLIdx(a, target, 0, elIdx);
+//        int rIdx = findMinRIdx(a, target, elIdx + 1, a.length);
 
-        int lIdx = (elIdx == 0) ? 0 : findMinIdx(a, target, 0, elIdx, false);
-        int rIdx = (elIdx == a.length - 1) ? -1 : findMinIdx(a, target, elIdx + 1, a.length, true);
+        int lIdx = findMinIdx(a, target, 0, elIdx, false);
+        int rIdx = findMinIdx(a, target, elIdx, a.length - 1, true);
         x[0] = (lIdx != -1) ? lIdx : elIdx;
         x[1] = (rIdx != -1) ? rIdx : elIdx;
         return x;
