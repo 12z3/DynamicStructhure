@@ -3,6 +3,9 @@ package dynamicsStructhure.bS;
 import java.util.Arrays;
 
 public class bsRange {
+
+    // https://www.informatika.bg/lectures/binary-search
+
     public static void main(String[] args) {
         int[] a = {1, 3, 4, 5, 6, 7, 8, 11, 12, 13, 14, 45};
         int[] a2 = {1, 2, 3, 3, 3, 3, 3, 3, 12, 13, 14, 45};
