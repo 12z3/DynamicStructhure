@@ -13,9 +13,8 @@ public class bsRange {
 
     private static int[] range(int[] a, int target) {
         int[] x = new int[2];
-        int elIdx;
 
-        elIdx = midElIdx(a, target);
+        int elIdx = midElIdx(a, target);
         System.out.print("mIdx = " + elIdx + "; ");
         //int lIdx = findMinLIdx(a, target, 0, elIdx);
         //int rIdx = findMinRIdx(a, target, elIdx + 1, a.length);
