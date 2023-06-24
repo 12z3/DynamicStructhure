@@ -6,7 +6,7 @@ public class bsRange {
     public static void main(String[] args) {
         int[] a = {1, 3, 4, 5, 6, 7, 8, 11, 12, 13, 14, 45};
         int[] a2 = {1, 2, 3, 3, 3, 3, 3, 3, 12, 13, 14, 45};
-        int[] a1 = {1, 1, 3, 3, 3, 3, 12, 12, 12, 12, 12, 45};
+        int[] a1 = {1, 1, 3, 3, 3, 3, 12, 12, 12, 12, 12, 45};        // mIdx = 8; [6, 10]
 
         System.out.println(Arrays.toString(range(a1, 12)));
     }
