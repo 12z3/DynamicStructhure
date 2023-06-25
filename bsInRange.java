@@ -117,6 +117,7 @@ public class bsInRange {
     // Търси се най-малкият, който е > target. Трябва да се "прескочи" верният отговор да се провери условието
     // a[m] < target и да се премести указателя s.
     // В противен случай съм намерил само потенциален отговор, но дали е минималният възможен?
+    //.... т.е когато target  не е намерено в интервала [s...e] върни s (в случая) или e.
     private static int bsA(int[] a, int target) {
         int s = 0, e = a.length - 1, m, ans = 0;
 
@@ -126,7 +127,7 @@ public class bsInRange {
                 s = m + 1;
             } else if (a[m] > target) {
                 e = m - 1;
-            }else return a[m - 1];
+            }//else return a[m - 1];
         }
         return a[e];
     }
