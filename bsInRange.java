@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class bsInRange {
 
     // https://www.informatika.bg/lectures/binary-search
+    // https://leetcode.com/problems/find-smallest-letter-greater-than-target/
 
     public static void main(String[] args) {
         int[] a = {1, 3, 4, 5, 6, 7, 8, 11, 12, 13, 14, 45};
@@ -129,6 +130,6 @@ public class bsInRange {
                 e = m - 1;
             }//else return a[m - 1];
         }
-        return a[e];
+        return a[s];
     }
 }
