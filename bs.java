@@ -1,22 +1,22 @@
-package dynamicsStructhure;
+package dynamicsStructhure.bS;
 
 import java.util.Arrays;
 
 public class bs {
     //https://leetcode.com/problems/search-in-rotated-sorted-array/
     public static void main(String[] args) {
-        int target = 1;
+        int target = 4;
         //int[] a = {0, 1, 2, 4, 5, 6, 7};
         //     idx   0  1  2  3  4  5  6
         //int[] a = {4, 5, 6, 7, 0, 1, 2}; // 0
-        int[] a = {1, 3}; // 1
+        //int[] a = {1, 3}; // 1
         //int[] a = {1, 3, 5,}; // 1
         //int[] a = {4, 5, 6, 7, 0, 1, 2}; // 0
 
         // int[] b = {3, 4, 1, 2, 3};
         //int[] b = {5, 6, 7, 0, 1, 2, 4};
         //int[] b = {0, 1, 2, 4, 5, 6, 7};
-        //int[] b = {3, 4, 5, 6, 7, 8, 1, 2, 3};
+        int[] a = {3, 4, 5, 6, 7, 8, 1, 2, 3};
 
         System.out.println(Arrays.toString(a) + " target = " + target);
         System.out.println(" " + "idx = " + findElInRotatedArr(a, target));
@@ -28,21 +28,20 @@ public class bs {
         rotatedArr(nums, target);
         System.out.print(Arrays.toString(nums));
 
-        if (nums.length == 1) return (nums[0] == target)? target: -1;
+        if (nums.length == 1) return (nums[0] == target) ? target : -1;
 
         int s = 0, e = nums.length - 1, m = s + ((e - s) / 2);
         lPeak = findPeak(nums, 0, m + 1, target);
         rPeak = findPeak(nums, m, e, target);
 
-        if (lPeak == rPeak) peakIdx = lPeak;
+        if (lPeak == rPeak) peakIdx = rPeak;
         if (peakIdx != -1) peakIdx = (nums[lPeak] > nums[rPeak]) ? lPeak : rPeak;
         System.out.print(" Peak Idx = " + peakIdx + "; ");
 
         elInLHalf = binarySearchIdx(nums, target, 0, peakIdx);
-        if (elInLHalf == -1) {
-            elInRHalf = binarySearchIdx(nums, target, peakIdx + 1, nums.length - 1);
-            return elInRHalf;
-        } else return elInLHalf;
+        elInRHalf = binarySearchIdx(nums, target, peakIdx + 1, nums.length - 1);
+
+        return (elInLHalf == -1) ? elInRHalf: elInLHalf;
     }
 
     private static void rotatedArr(int[] arr, int steps) {
