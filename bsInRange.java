@@ -8,13 +8,14 @@ public class bsInRange {
     // https://leetcode.com/problems/find-smallest-letter-greater-than-target/
 
     public static void main(String[] args) {
+        int[] a3 = {5, 7, 7, 8, 8, 10};
         int[] a = {1, 3, 4, 5, 6, 7, 8, 11, 12, 13, 14, 45};
         int[] a2 = {1, 2, 3, 3, 3, 3, 3, 3, 12, 13, 14, 45};
         int[] a1 = {1, 1, 3, 3, 12, 12, 12, 12, 12, 12, 12, 45};                    // mIdx = 5; [5, 10]
 
         //System.out.println(bsA(a, 7));
 
-        int target = 12;
+        int target = 3;
         System.out.println(Arrays.toString(a1) + " -> " + target);
         System.out.printf("lastIdx = %d; ", a1.length - 1);
         System.out.println("ans = " + Arrays.toString(range(a1, target)));
@@ -29,14 +30,14 @@ public class bsInRange {
 //        int lIdx = findMinLIdx(a, target, 0, elIdx);
 //        int rIdx = findMinRIdx(a, target, elIdx + 1, a.length);
 
-        int lIdx = findMinIdx(a, target, 0, elIdx, false);
-        int rIdx = findMinIdx(a, target, elIdx, a.length - 1, true);
+        int lIdx = findIdx(a, target, 0, elIdx, false);
+        int rIdx = findIdx(a, target, elIdx, a.length - 1, true);
         x[0] = (lIdx != -1) ? lIdx : elIdx;
         x[1] = (rIdx != -1) ? rIdx : elIdx;
         return x;
     }
 
-    private static int findMinIdx(int[] a, int target, int s, int e, boolean findR) {
+    private static int findIdx(int[] a, int target, int s, int e, boolean findR) {
         int m, ans = 0;
 
         while (s <= e) {
