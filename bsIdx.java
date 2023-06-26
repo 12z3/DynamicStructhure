@@ -1,16 +1,30 @@
 package dynamicsStructhure.bS;
 
+import java.util.Arrays;
+
 public class bsIdx {
     public static void main(String[] args) {
         int[] a1 = {1, 7, 7, 8, 8, 8, 8, 9, 10, 11, 12, 13, 15};
-        int[] a = {1, 1, 3, 3, 12, 12, 12, 12, 12, 12, 12, 45};
-        int target = 12;
+        int[] a2 = {0, 0, 3, 3, 12, 12, 12, 12, 12, 12, 12, 45};
+        int[] a = {1};
+        int target = 1;
 
-        System.out.print(findFirstIdx(a, target) + " ");
-        System.out.println(findLastIdx(a, target));
+//        System.out.print(findFirstIdx(a, target) + " ");
+//        System.out.println(findLastIdx(a, target));
+//        System.out.print(findIdx(a, target, false) + " ");
+//        System.out.println(findIdx(a, target, true));
 
-        System.out.print(findIdx(a, target, false) + " ");
-        System.out.println(findIdx(a, target, true));
+        System.out.println(Arrays.toString(searchRange(a, 1)));
+    }
+
+    public static int[] searchRange(int[] nums, int target) {
+        int[] ans = new int[2], x = {-1, -1};
+
+        if (bs(nums, target) == -1) return x;
+
+        ans[0] = findIdx(nums, target, false);
+        ans[1] = findIdx(nums, target, true);
+        return ans;
     }
 
     // За да намери първият idx  "свива" масива от края към началото докато е изпълнено s <= e -> [e < s = m].
@@ -73,5 +87,18 @@ public class bsIdx {
             }
         }
         return ans;
+    }
+
+    private static int bs(int[] a, int target) {
+        int s = 0, e = a.length - 1, m;
+        while (s <= e) {
+            m = s + ((e - s) / 2);
+            if (target > a[m]) {
+                s = m + 1;
+            } else if (target < a[m]) {
+                e = m - 1;
+            } else return m;
+        }
+        return -1;
     }
 }
