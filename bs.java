@@ -31,8 +31,8 @@ public class bs {
         if (nums.length == 1) return (nums[0] == target) ? target : -1;
 
         int s = 0, e = nums.length - 1, m = s + ((e - s) / 2);
-        lPeak = findPeak(nums, 0, m + 1, target);
-        rPeak = findPeak(nums, m, e, target);
+        lPeak = findPeak(nums, 0, e, target);
+        rPeak = findPeak(nums, lPeak + 1, e, target);
 
         if (lPeak == rPeak) peakIdx = rPeak;
         if (peakIdx != -1) peakIdx = (nums[lPeak] > nums[rPeak]) ? lPeak : rPeak;
