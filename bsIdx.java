@@ -5,16 +5,15 @@ import java.util.Arrays;
 public class bsIdx {
     public static void main(String[] args) {
         int[] a1 = {1, 7, 7, 8, 8, 8, 8, 9, 10, 11, 12, 13, 15};
-        int[] a2 = {0, 0, 3, 3, 12, 12, 12, 12, 12, 12, 12, 45};
-        int[] a = {1};
-        int target = 1;
+        int[] a = {0, 0, 3, 3, 12, 12, 12, 12, 12, 12, 12, 45};
+        int target = 12;
 
 //        System.out.print(findFirstIdx(a, target) + " ");
 //        System.out.println(findLastIdx(a, target));
 //        System.out.print(findIdx(a, target, false) + " ");
 //        System.out.println(findIdx(a, target, true));
 
-        System.out.println(Arrays.toString(searchRange(a, 1)));
+        System.out.println(Arrays.toString(searchRange(a, target)));
     }
 
     public static int[] searchRange(int[] nums, int target) {
@@ -68,8 +67,10 @@ public class bsIdx {
     // else {е равносилно на намерил си числото, но не знаеш дали е първото, последното или е някъде по средата.}
     // isFirstIdxWasFind -> определя кой указател ще манипулирам "e" за първият или "s" за последният индекс.
     // Или: 1: Намирам числото някъде в масива.
+    //      -> else{
     //      2: Търся най-малкият негов индекс.
     //      3: Търся най-големият такъв.
+    //      }
     private static int findIdx(int[] a, int target, boolean doesFirstIdxFind) {
         int s = 0, e = a.length - 1, m, ans = 0;
 
