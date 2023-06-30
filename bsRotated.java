@@ -9,11 +9,19 @@ public class bsRotated {
     // Завърта произволен сортиран масив от не повтарящи се елменти "target" пъти и намира
     // индекса на максималният елемент + индекса на "target" в масива ако има такъв.
 
+    // Някаква такава трябва да е логиката май-май....?
+    // 1: if(a[m] < a[m-1]) return m - 1;              5, 6, 7,  0,  1, 2, 4
+    // 2: if(a[m] > a[m+1]) return m;                  4, 5, 6,  7,  0, 1, 2
+    // else:
+    //      3: if(a[m] < a[s]) e = m - 1;              5, 6, 7,  0,  1, 2, 4
+    //      4: if(a[m] > a[s]) s = m + 1;              2, 4, 5,  6,  7, 0, 1
+
     public static void main(String[] args) {
         int target = 2;
-        int[] a = {0, 1, 2, 4, 5, 6, 7};
+        //int[] a = {0, 1, 2, 4, 5, 6, 7};
         //     idx   0  1  2  3  4  5  6
-        //int[] a = {4, 5, 6, 7, 0, 1, 2}; // 0
+        int[] a = {4, 5, 6, 7, 0, 1, 2}; // 0
+        //int[] a = {-2, -1, 0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7};
         //int[] a = {1, 3}; // 1
         //int[] a = {1, 3, 5,}; // 1
         //int[] a = {4, 5, 6, 7, 0, 1, 2}; // 0
@@ -25,7 +33,7 @@ public class bsRotated {
         //int[] a = {1, 2, 3, 4, 5, 3, 1};
 
         System.out.println(Arrays.toString(a) + " target = " + target);
-        System.out.println(" " + "idx = " + findElInRotatedArr(a, target));
+        System.out.println(" " + "idx = " + findElInRotatedArr(a, target) + ";");
     }
 
     private static int findElInRotatedArr(int[] nums, int target) {
@@ -42,9 +50,9 @@ public class bsRotated {
 
         if (lPeak == rPeak) peakIdx = rPeak;
         if (peakIdx != -1) peakIdx = (nums[lPeak] > nums[rPeak]) ? lPeak : rPeak;
-        System.out.print(" Peak Idx = " + peakIdx + "; ");
+        System.out.print(" Peak Idx = " + peakIdx + "; lastIdx = " + (nums.length - 1) + "; ");
 
-        elInLHalf = binarySearchIdx(nums, target, 0, peakIdx);
+        elInLHalf = binarySearchIdx(nums, target, s, peakIdx);
         elInRHalf = binarySearchIdx(nums, target, peakIdx + 1, nums.length - 1);
 
         return (elInLHalf == -1) ? elInRHalf : elInLHalf;
