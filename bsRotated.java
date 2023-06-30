@@ -14,7 +14,7 @@ public class bsRotated {
     // 1: if(a[m] < a[m-1]) return m - 1;              5, 6, 7,  0,  1, 2, 4
     // 2: if(a[m] > a[m+1]) return m;                  4, 5, 6,  7,  0, 1, 2
     // else:
-    //      3: if(a[m] < a[s]) e = m - 1;              5, 6, 7,  0,  1, 2, 4
+    //      3: if(a[m] <= a[s]) e = m - 1;              5, 6, 7,  0,  1, 2, 4
     //      4: if(a[m] > a[s]) s = m + 1;              2, 4, 5,  6,  7, 0, 1
 
     public static void main(String[] args) {
