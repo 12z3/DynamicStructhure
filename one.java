@@ -1,5 +1,7 @@
 package Recursions;
 
+import java.util.Arrays;
+
 public class one {
     public static void main(String[] args) {
         System.out.println(sum(1, 0, 3));
@@ -9,13 +11,14 @@ public class one {
         System.out.println(sum4(3));
         System.out.println(factorial(4));
         System.out.println(factorialInRange(1, 4));
-        System.out.println(factorialInRange1(1, 4));
+        System.out.println(factorialInRange1(3, 5));
     }
 
     static int factorialInRange(int x1, int x2) {             // .....  1 * 2 * 3 ..... 4 5
         if ((x2 - x1) <= 0) return x1;
         return x1 * (factorialInRange((x1 + 1), x2));
     }
+
     static int factorialInRange1(int x1, int x2) {            // .....  1 * 2 * 3 ..... 4 5
         if (x1 == x2) return x1;
         return x2 * (factorialInRange(x1, x2 - 1));
