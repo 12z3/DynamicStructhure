@@ -26,6 +26,10 @@ public class rndTest {
         sumProblem(y, 3);
         selection_sort(t);
 
+        System.out.println(Arrays.toString(x));
+        System.out.println(Arrays.toString(skipIdx(x, 1)));
+        System.out.println(Arrays.toString(skipIdx1(x, 1)));
+
 
     }
 
@@ -150,7 +154,7 @@ public class rndTest {
     // Взима 1-ят ел и го Обявява за мин. Сравнява го със всички останали. Ако е най-малкият си остава на мястото.
     // Ако ли Не то разменя местата на този ел с най-малкият от всички останали елементи.
     static void selection_sort(int arr[]) {
-        int n = arr.length;
+        int n = arr.length;                           // 13, 46, 24, 52, 20, 9
         for (int i = 0; i < n - 1; i++) {
             int mini = i;                             // <-  !!!
             for (int j = i + 1; j < n; j++) {
@@ -169,5 +173,27 @@ public class rndTest {
             System.out.print(arr[i] + " ");
         }
         System.out.println();
+    }
+
+    // https://www.youtube.com/watch?v=RBSGKlAvoiM&list=PLWKjhJtqVAbn5emQ3RRG8gEBqkhf_5vxD
+
+    static int[] skipIdx(int[] a, int idx) {
+        int[] tmp = new int[a.length - 1];
+        for (int i = 0, j = 0; i < a.length; i++, j++) {
+            if (i == idx) {
+                j--;
+            } else tmp[j] = a[i];
+        }
+        a = tmp;
+        return a;
+    }
+    static int[] skipIdx1(int[] a, int idx) {
+        int[] tmp = new int[a.length - 1];
+        int j = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (i != idx)  tmp[j++] = a[i];
+        }
+        a = tmp;
+        return a;
     }
 }
