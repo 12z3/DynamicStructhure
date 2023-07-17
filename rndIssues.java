@@ -12,28 +12,46 @@ public class rndIssues {
         int[] t1 = {6, 1, 3, 2, 4, 3, 3, 3};
         int[] t2 = {1, 1, 4, 3};
         int[] t3 = {7, 1, 5, 2, 4, 3};
+
         System.out.println(Arrays.toString(x));
         System.out.println(Arrays.toString(rotatedArr(x, 3)));
         //System.out.println(Arrays.toString(rotatedArr1(x, 2)));
 
+        System.out.println();
+
+        System.out.println(Arrays.toString(a));
         for (Map.Entry<Integer, Integer> el : countDigitsMatch(a).entrySet()) System.out.print(el + "; ");
         System.out.println();
         for (Map.Entry<Integer, Integer> el : countDigitsMatch1(a).entrySet()) System.out.print(el + "; ");
         System.out.println();
         for (Map.Entry<Integer, Integer> el : countDigitsMatch2(a).entrySet()) System.out.print(el + "; ");
         System.out.println();
+        System.out.println();
         System.out.println(Arrays.toString(swap(x, 1, 6)));
+
+        System.out.println();
 
         int[] arr = {2, 2, 1, 1, 1, 2, 2};
         int ans = majorityElement(arr);
         System.out.println("The majority element is: " + ans);
+        System.out.println();
+
+        System.out.print("sumProblem: ");
         sumProblem(y, 3);
+
+        System.out.println();
+        System.out.println();
         selection_sort(t);
 
         System.out.println(Arrays.toString(x));
         System.out.println(Arrays.toString(skipIdx(x, 1)));
         System.out.println(Arrays.toString(skipIdx1(x, 1)));
+        System.out.println();
+
+        System.out.println("Three sum: ");
         threeSums(x1);
+
+        System.out.println();
         numbers(t2);
         System.out.println();
         numbers1(t2);
@@ -104,16 +122,19 @@ public class rndIssues {
         //Ако мапа не съдържа ключа  a[i] то добави го със стойност 1;
         // В противен случай презапиши стойността на ключ a[i] с еденица от горе.
         for (int i = 0; i < a.length; i++) {
-            // Дай ми стойността на ключа a[i] в противен случай(ако няма такава) върни 0,1...или каквото там си задал.
+            // Дай ми стойността на ключа a[i] в противен случай(ако няма такава) върни 0,1...или каквото там си задал
+            // в defaultValue в случая 0.
             int count = countDigits.getOrDefault(a[i], 0);
             countDigits.put(a[i], count + 1);
         }
         return countDigits;
     }
 
+
+
     // https://takeuforward.org/data-structure/two-sum-check-if-a-pair-with-given-sum-exists-in-array/
-    static void sumProblem(int[] a, int target) {            // 2, 3, 1, 4    t = 4
-        Map<Integer, Integer> tmp = new HashMap<>();
+    static void sumProblem(int[] a, int target) {              // 0, 1, 2, 3    t = 4    - Key
+        Map<Integer, Integer> tmp = new HashMap<>();           // 2, 3, 1, 4    t = 4    - Value
         Map<Integer, Integer> res = new HashMap<>();
 
 
@@ -137,9 +158,12 @@ public class rndIssues {
         //size of the given array:
         int n = v.length;
         int cnt = 0; // count
-        int el = 0; // Element
+        int el = 0;  // Element
 
         //applying the algorithm:
+        // Предполага се, че първият елемент се среща най-много. И започвам да броя:
+        // Ако следващият е == на този ел то cnt++, aко ли не то cnt--. При положение, че cnt == 0,
+        // то този елемент ще бъде нарочен за максимално срещащ се. И цялата галимация с броенето се повтаря.
         for (int i = 0; i < n; i++) {
             if (cnt == 0) {
                 cnt = 1;
@@ -148,7 +172,7 @@ public class rndIssues {
             else cnt--;
         }
 
-        //checking if the stored element
+        // checking if the stored element
         // is the majority element:
         int cnt1 = 0;
         for (int i = 0; i < n; i++) {
@@ -156,6 +180,29 @@ public class rndIssues {
         }
 
         if (cnt1 > (n / 2)) return el;
+        return -1;
+    }
+
+    public static int majorityElement1(int []v) {
+        //size of the given array:
+        int n = v.length;
+
+        //declaring a map:
+        HashMap<Integer, Integer> mpp = new HashMap<>();           // mpp -> {0,0} {0,0} {0,0}
+
+        //storing the elements with its occurrence:
+        for (int i = 0; i < n; i++) {
+            int value = mpp.getOrDefault(v[i], 0);       // v[i] - Key, count - Value
+            mpp.put(v[i], value + 1);
+        }
+
+        //searching for the majority element:
+        for (Map.Entry<Integer, Integer> it : mpp.entrySet()) {
+            if (it.getValue() > (n / 2)) {
+                return it.getKey();
+            }
+        }
+
         return -1;
     }
 
@@ -295,7 +342,7 @@ public class rndIssues {
     }
 
     static void numbers2(int[] a) {
-        int value = 0, max = Integer.MIN_VALUE, missingEl = 0, repeatingEl = 0;
+        int value, max = Integer.MIN_VALUE, missingEl = 0, repeatingEl = 0;
         int[] tmp = new int[a.length + 1];
 
         for (int i = 0; i < a.length; i++) {
