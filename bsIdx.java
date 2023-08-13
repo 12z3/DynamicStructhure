@@ -3,6 +3,9 @@ package dynamicsStructhure.bS;
 import java.util.Arrays;
 
 public class bsIdx {
+
+    // Намира първият и последният индекс на които се среща даден елемент.
+
     public static void main(String[] args) {
         int[] a1 = {1, 7, 7, 8, 8, 8, 8, 9, 10, 11, 12, 13, 15};
         int[] a = {0, 0, 3, 3, 12, 12, 12, 12, 12, 12, 12, 45};
@@ -23,6 +26,32 @@ public class bsIdx {
 
         ans[0] = findIdx(nums, target, false);
         ans[1] = findIdx(nums, target, true);
+        return ans;
+    }
+
+    // else {е равносилно на намерил си числото, но не знаеш дали е първото, последното или е някъде по средата.}
+    // isFirstIdxWasFind -> определя кой указател ще манипулирам "e" за първият или "s" за последният индекс.
+    // Или: 1: Намирам числото някъде в масива.
+    //      -> else{
+    //      2: Търся най-малкият негов индекс.
+    //      3: Търся най-големият такъв.
+    //      }
+    private static int findIdx(int[] a, int target, boolean doesFirstIdxFound) {
+        int s = 0, e = a.length - 1, m, ans = -1;
+
+        while (s <= e) {
+            m = s + ((e - s) / 2);
+            if (target > a[m]) {
+                s = m + 1;
+            } else if (target < a[m]) {
+                e = m - 1;
+            } else {
+                ans = m;
+                if (!doesFirstIdxFound) {
+                    e = m - 1;
+                } else s = m + 1;
+            }
+        }
         return ans;
     }
 
@@ -59,32 +88,6 @@ public class bsIdx {
             } else {
                 ans = m;
                 s = m + 1;
-            }
-        }
-        return ans;
-    }
-
-    // else {е равносилно на намерил си числото, но не знаеш дали е първото, последното или е някъде по средата.}
-    // isFirstIdxWasFind -> определя кой указател ще манипулирам "e" за първият или "s" за последният индекс.
-    // Или: 1: Намирам числото някъде в масива.
-    //      -> else{
-    //      2: Търся най-малкият негов индекс.
-    //      3: Търся най-големият такъв.
-    //      }
-    private static int findIdx(int[] a, int target, boolean doesFirstIdxFind) {
-        int s = 0, e = a.length - 1, m, ans = 0;
-
-        while (s <= e) {
-            m = s + ((e - s) / 2);
-            if (target > a[m]) {
-                s = m + 1;
-            } else if (target < a[m]) {
-                e = m - 1;
-            } else {
-                ans = m;
-                if (!doesFirstIdxFind) {
-                    e = m - 1;
-                } else s = m + 1;
             }
         }
         return ans;
