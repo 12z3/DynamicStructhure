@@ -12,10 +12,10 @@ public class bsCF {
         int idx = bsCeilOrFloor(a, target, isCeil);
         System.out.printf("Target = %d; Ceil = %b -> el = %d; idx = %d%n", target, isCeil, a[idx], idx);
 
-        int idx2 = ceil1(a, target);
+        int idx2 = ceil(a, target);
         System.out.println(a[idx2]);
 
-        int idx3 = floor1(a, target);
+        int idx3 = floor(a, target);
         System.out.println(a[idx3]);
 
         int idx1 = trianglePeak(a1);
@@ -67,22 +67,22 @@ public class bsCF {
         return isCeil ? s : e;
     }
 
-    private static int ceil(int[] a, int target) {
+    private static int ceil(int[] a, int target) {            // Най-големият от всички по-малки от target;
         int s = 0, e = a.length - 1, mid, ans = -1;
 
         while (s <= e) {
             mid = s + (e - s) / 2;
             if (target < a[mid]) {
                 e = mid - 1;
-            } else if (target >= a[mid]) {
-                s = mid + 1;
+            } else if (target >= a[mid]) {                   // "=" компенсира един else за случая: target == a[mid]
+                s = mid + 1;                                 // виж ceil1.
                 ans = s;
             }
         }
         return ans;
     }
 
-    private static int floor(int[] a, int target) {
+    private static int floor(int[] a, int target) {           // Най-малкият от всички по-големи от target;
         int s = 0, e = a.length - 1, mid, ans = -1;
 
         while (s <= e) {
