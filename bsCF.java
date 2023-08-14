@@ -22,6 +22,19 @@ public class bsCF {
         System.out.printf("Peak = %d on idx = %d%n", a1[idx1], idx1);
     }
 
+    // Ceil, floor с bs:
+    // Винагио се стига до подредбата: "s  <  mid  <  e". В задачата за търсене на ел. -> target == mid, return mid;
+    // В случая когато target не е в масива се стига до положението в което s = e = mid
+    // Има две условия:
+    // 1. "if (target < a[mid]) e = mid - 1;" -> е < s -> break; return: каквото e "e". Манипулираш "е".
+    // 2. "if (target > a[mid]) s = mid + 1;" -> s > e -> break; return: каквото e "s". Манипулираш "s".
+    // E... в зависимост от условието на if-a или "s" ще прескочи "е" или "е" ще прескочи "s" -> while -> break;
+    // Особенното в случая е, че target може да го няма в масива (target != mid), но логиката изцяло копира логиката в
+    // binary search - алгоритъма. Ако е наличен по-условие или го връщаме като резултат или връщаме предишният или
+    // следващият елемент в зависимост от условието.
+    // ceil:   e = mid  < s;   return s;
+    // floor:  e < mid  = s;   return e;
+
     private static int zigzagPeak(int[] a, int target) {
         int s = 0, e = a.length - 1, mid = 0;
 
@@ -37,7 +50,7 @@ public class bsCF {
     }
 
     private static int trianglePeak(int[] a) {
-        int s = 0, e = a.length - 1, mid = 0;
+        int s = 0, e = a.length - 1, mid = -1;
 
         while (s <= e) {
             mid = s + (e - s) / 2;
@@ -47,7 +60,7 @@ public class bsCF {
                 e = mid - 1;
             } else return mid;
         }
-        return -1;
+        return mid;
     }
 
 
@@ -87,9 +100,9 @@ public class bsCF {
 
         while (s <= e) {
             mid = s + (e - s) / 2;
-            if (target <= a[mid]) {
-                ans = e;
-                e = mid - 1;
+            if (target <= a[mid]) {                         // ans е едино от възможните решения....
+                ans = e;                                    // От значение е поредноста в този случай на тези 2-а реда
+                e = mid - 1;                                // виж ceil.
             } else if (target > a[mid]) {
                 s = mid + 1;
             }
@@ -106,12 +119,12 @@ public class bsCF {
                 e = mid - 1;
             } else if (target > a[mid]) {
                 s = mid + 1;
-                ans = s;
-            } else {
+                //ans = s;
+            } else {                                        // При положение, че target е налично в масива
                 return mid + 1;
             }
         }
-        return s;
+        return s;                                          // Няма значение дали target го има в масива
     }
 
     private static int floor1(int[] a, int target) {
@@ -120,12 +133,12 @@ public class bsCF {
         while (s <= e) {
             mid = s + (e - s) / 2;
             if (target < a[mid]) {
-                ans = e;
+                //ans = e;
                 e = mid - 1;
             } else if (target > a[mid]) {
                 s = mid + 1;
-            } else {
-                return mid - 1;
+            } else {                          // При условие, че цикъла не влезе в този else това еднозначно показва,
+                return mid - 1;               // че target не се намира в масива.
             }
         }
         return e;
