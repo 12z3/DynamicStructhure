@@ -23,7 +23,7 @@ public class bsCF {
     }
 
     // Ceil, floor с bs:
-    // Винагио се стига до подредбата: "s  <  mid  <  e". В задачата за търсене на ел. -> target == mid, return mid;
+    // Подредбата е: "s  <  mid  <  e". В задачата за търсене на ел. -> target == mid, return mid;
     // В случая когато target не е в масива се стига до положението в което s = e = mid
     // Има две условия:
     // 1. "if (target < a[mid]) e = mid - 1;" -> е < s -> break; return: каквото e "e". Манипулираш "е".
