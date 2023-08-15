@@ -1,6 +1,8 @@
 package dynamicsStructhure.bS;
 
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class bsIdx {
 
@@ -16,7 +18,20 @@ public class bsIdx {
 //        System.out.print(findIdx(a, target, false) + " ");
 //        System.out.println(findIdx(a, target, true));
 
+
+        long start1 = System.nanoTime();
+        findIdx(a, target);
+        long end1 = System.nanoTime();
+        long resFor = (end1 - start1);
+
+        long start2 = System.nanoTime();
         System.out.println(Arrays.toString(searchRange(a, target)));
+        long end2 = System.nanoTime();
+        long resBs = (end2 - start2);
+
+        System.out.printf("ForTime = %d microSec%n", resFor / 1000);
+        System.out.printf("BSTime = %d microSec%n", resBs / 1000);
+        System.out.printf("ForTime - BSTime = %d microSec", (resFor - resBs) / 1000);
     }
 
     public static int[] searchRange(int[] nums, int target) {
@@ -24,8 +39,8 @@ public class bsIdx {
 
         if (bs(nums, target) == -1) return x;
 
-        ans[0] = findIdx(nums, target, false);
-        ans[1] = findIdx(nums, target, true);
+        ans[0] = findIdx(nums, target, false);    // Търси на ляво от mid в масива:  е = m - 1;
+        ans[1] = findIdx(nums, target, true);     // Търси на дясно от mid в масива: s = m + 1;
         return ans;
     }
 
@@ -45,11 +60,11 @@ public class bsIdx {
                 s = m + 1;
             } else if (target < a[m]) {
                 e = m - 1;
-            } else {
-                ans = m;
+            } else {       // ans е възможен отговор, но на мен ми трябва първия. Така, че ще свивам дясната граница на
+                ans = m;   // търсенето докато s <= e
                 if (!doesFirstIdxFound) {
-                    e = m - 1;
-                } else s = m + 1;
+                    e = m - 1;             // Логиката е същата, но на обратно. Манипулирам лявата граница на търсенето
+                } else s = m + 1;          // ;)
             }
         }
         return ans;
@@ -104,5 +119,28 @@ public class bsIdx {
             } else return m;
         }
         return -1;
+    }
+
+    private static void findIdx(int[] a, int target) {
+        boolean lFind = false, rFind = false;
+
+        int s = 0, e = a.length - 1, start = -1, end = -1;
+        for (int i = 0; i < a.length; i++) {
+            if (!lFind && a[s] != target) {
+                s++;
+            } else if (!lFind) {
+                start = s;
+                lFind = true;
+            }
+            if (!rFind && a[e] != target) {
+                e--;
+            } else if (!rFind) {
+                end = e;
+                rFind = true;
+            }
+            if (lFind && rFind) break;
+        }
+
+        System.out.printf(" start = %d, end = %d%n", start, end);
     }
 }
