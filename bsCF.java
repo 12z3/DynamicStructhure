@@ -30,12 +30,13 @@ public class bsCF {
     // 2. "if (target > a[mid]) s = mid + 1;" -> s > e -> break; return: каквото e "s". Манипулираш "s".
     // E... в зависимост от условието на if-a или "s" ще прескочи "е" или "е" ще прескочи "s" -> while -> break;
     // Особенното в случая е, че target може да го няма в масива (target != mid), но логиката изцяло копира логиката в
-    // binary search - алгоритъма. Ако е наличен по-условие или го връщаме като резултат или връщаме предишният или
-    // следващият елемент в зависимост от условието.
+    // binary search - алгоритъма. Ако е наличен по-условие или го връща като резултат или връща предишният или
+    // следващият елемент в зависимост от условието. Защото target го няма в масива. Ако съществуваше
+    // алгоритъма ще го намери, но тъй като го няма границите ще се пресекат е < s.
     // ceil:   e = mid  < s;   return s;
     // floor:  e < mid  = s;   return e;
 
-    private static int zigzagPeak(int[] a, int target) {
+    private static int zigzagPeak(int[] a, int target) {            // todo:  1, 2, 3, 4, 5, 7, 8, 9,   1, 2, 3, 4
         int s = 0, e = a.length - 1, mid = 0;
 
         while (s <= e) {
@@ -49,7 +50,7 @@ public class bsCF {
         return -1;
     }
 
-    private static int trianglePeak(int[] a) {
+    private static int trianglePeak(int[] a) {                     // bitonic: 1, 2, 3, 4, 5, 7, 8, 9, 1, 2, 3, 4
         int s = 0, e = a.length - 1, mid = -1;
 
         while (s <= e) {
