@@ -4,8 +4,11 @@ public class bsCF {
     public static void main(String[] args) {
 
         int[] a = {1, 2, 3, 4, 5, 7, 6, 8, 9};
+        int[] a2 = {1, 2, 7, 6, 8, 9, 3, 4, 5};
         int[] a1 = {1, 2, 3, 4, 5, 7, 8, 9, 8, 7, 6, 5, 4, 3};
         int[] b = {1, 2, 3, 4, 5, 7, 8, 9, 1, 2, 3, 4};
+
+        System.out.println(a2[zigZagPeak(a2)]);
 
         int target = 6;
         boolean isCeil = true;
@@ -36,21 +39,34 @@ public class bsCF {
     // ceil:   e = mid  < s;   return s;
     // floor:  e < mid  = s;   return e;
 
-    private static int zigzagPeak(int[] a, int target) {            // todo:  1, 2, 3, 4, 5, 7, 8, 9,   1, 2, 3, 4
-        int s = 0, e = a.length - 1, mid = 0;
+    // Peak:
+    // При ans = -1 -> че масива не е завъртян.
+    // Това са всичките въможни четери случая - Масива е Сортиран и завъртян n-пъти;
+    // 1. a[m] > a[m+1]
+    // 2. a[m] < a[m-1]
+    // 1. a[s] > a[m+1] -> всички след mid са < от тези преди средния => е = m - 1.
+    // 1. a[s] < a[m+1] -> всички след mid са > от тези преди средния => s = m + 1.
+    private static int zigZagPeak(int[] a) {                     // todo:  1, 2, 3, 4, 5, 7, 8,  9, 1,  2, 3, 4
+        int s = 0, e = a.length - 1, m;
 
-        while (s <= e) {
-            mid = s + (e - s) / 2;
-            if (a[mid] > a[mid - 1] && a[mid] < a[mid + 1]) {
-                s = mid + 1;
-            } else if (a[mid] < a[mid - 1] && a[mid] > a[mid + 1]) {
-                e = mid - 1;
-            } else return mid;
+        while (s <= e) {                                         // ans = m: m > m + 1 or ans = m - 1: m < m - 1;
+            m = s + (e - s) / 2;
+            if (m > s && a[m] < a[m - 1]) {
+                return m - 1;
+            }
+            if (m < e && a[m] > a[m + 1]) {
+                return m;
+            }
+            if (a[s] < a[m]) {
+                s = m + 1;
+            } else if (a[s] >= a[m]) {
+                e = m - 1;
+            }
         }
         return -1;
     }
 
-    private static int trianglePeak(int[] a) {                     // bitonic: 1, 2, 3, 4, 5, 7, 8, 9, 1, 2, 3, 4
+    private static int trianglePeak(int[] a) {                   // bitonic: 1, 2, 3, 4, 5, 7, 8, 9, 4, 3, 2, 1
         int s = 0, e = a.length - 1, mid = -1;
 
         while (s <= e) {
