@@ -6,7 +6,7 @@ public class bsCF {
         int[] a = {1, 2, 3, 4, 5, 7, 6, 8, 9};
         int[] a2 = {1, 2, 7, 6, 8, 9, 3, 4, 5};
         int[] a1 = {1, 2, 3, 4, 5, 7, 8, 9, 8, 7, 6, 5, 4, 3};
-        int[] b = {1, 2, 3, 4, 5, 7, 8, 9, 1, 2, 3, 4};
+        int[] b = {1, 2, 3, 4, 5, 7, 8, 9, 1, 2, 3, 4, 11};
 
         System.out.println(a2[zigZagPeak(a2)]);
 
@@ -66,7 +66,7 @@ public class bsCF {
         return -1;
     }
 
-    private static int trianglePeak(int[] a) {                   // bitonic: 1, 2, 3, 4, 5, 7, 8, 9, 4, 3, 2, 1
+    public static int trianglePeak(int[] a) {                   // bitonic: 1, 2, 3, 4, 5, 7, 8, 9, 4, 3, 2, 1
         int s = 0, e = a.length - 1, mid = -1;
 
         while (s <= e) {
