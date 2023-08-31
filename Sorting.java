@@ -1,4 +1,4 @@
-package task;
+package dynamicsStructhure;
 
 import java.util.Arrays;
 
@@ -43,16 +43,16 @@ public class Sorting {
 
         int[] x = new int[28];
         int[]b = {1, 2, 1, 3, 4, 5, 16, 27, 8, 27}; // max = 27;                                27
-        //     {0, 2, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2}
+        //    {0, 2, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2}
 
         for (int i = 0; i < b.length; i++) {
             int idx = b[i];
-            x[idx]++;
+            x[idx]++;                 //               -> x[idx++]
         }
 
         System.out.println(Arrays.toString(x));
 
-        // x[i] - държи броя повторения на i в a.
+        // x[i] - държи броя повторения на i в b[].
         for (int i = 0; i < x.length; i++) {
             for (int j = 0; j < x[i]; j++) {
                 System.out.print(i + " ");
