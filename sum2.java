@@ -38,7 +38,7 @@ public class sum2 {
     }
 
     static void findPairA(int[] nums, int sum) {                                  // 3, 4, 2, 4, 8, 1, 9, 5, 0, 5, -4
-        HashMap<Integer, Integer> elDifferent = new HashMap<>();               // Map -> <el, validNum>
+        HashMap<Integer, Integer> elDifferent = new HashMap<>();                  // Map -> <el, validNum>
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> tmp;
         int validNum = -1;
@@ -54,7 +54,7 @@ public class sum2 {
                 } else {
                     tmp.add(nums[i]);
                     tmp.add(elDifferent.get(nums[i]));
-                    res.add(tmp);                                          // Тук е "кучето"
+                    res.add(tmp);                                               // Тук е "кучето"
                 }
             }
         }
