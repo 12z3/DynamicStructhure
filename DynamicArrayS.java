@@ -1,9 +1,9 @@
-package DynamicsStructhure;
+package dynamicsStructhure;
 
 public class DynamicArrayS {
     private static final int FIRST_COUNT_ELEMENT = 0;
     int[] items;
-    int size = FIRST_COUNT_ELEMENT;                        //int size == Броя на елементите различни от 0-а в масива.
+    int size = FIRST_COUNT_ELEMENT;                        // size == Броя на елементите различни от 0-а в масива.
     int capacity;                                          // Общият брой на елементите в масива.
 
     public DynamicArrayS(int item) {
@@ -12,21 +12,21 @@ public class DynamicArrayS {
 
     // {1,2,3,4,5,6}
     public void addElementToIndex(int index, int element) throws IllegalAccessException {
-        if (!isValidIndexAdd(index)){
+        if (!isValidIndexAdd(index)) {
             String messages = "Invalid Position INDEX";
-            throw  new IllegalAccessException(messages);
+            throw new IllegalAccessException(messages);
         }
         if (this.capacity == 0) {
             createNewArray();
         }
-        shiftRight(index);
+        shiftRightFrom(index);
         this.items[index] = element;
         this.size++;
-        this.capacity = items.length - this.size;
+        this.capacity = this.items.length - this.size;
     }
 
-    private boolean isValidIndexAdd(int index) {                   // "index >= size" Не може да трие нещо което е "0".
-        if (index < 0 || index >= this.items.length || index < this.capacity) {
+    private boolean isValidIndexAdd(int index) {
+        if (index < 0 || index >= this.items.length) {
             System.out.print("Error, INDEX is invalid!\n");
             return false;
         }
@@ -55,10 +55,10 @@ public class DynamicArrayS {
         }
         this.items[this.size++] = element;
         this.capacity = this.items.length - this.size;
-    }                              // Първо извършва действието, след това връща резултата и Едва след това увеличава -
-                                         // - стойността на върнатия резултат с 1-а.
+    }   // this.items[this.size++]: Първо извършва действието "this.items[this.size]", и Едва след това увеличава++ -
+        // - стойността на "this.size" с 1-а.
     public int delete() {
-        int deletingEl = this.items[this.size - 1];           // "items[size - 1]"- Последният елемент в масива.
+        int deletingEl = this.items[this.size - 1];   // "items[size - 1]"- Последният елемент в масива.
         this.items[this.size - 1] = 0;
         this.size--;
         this.capacity = this.items.length - this.size;
@@ -70,24 +70,24 @@ public class DynamicArrayS {
     public int deleteElementFromIndex(int index) {   // Трябва да мога да трия само Валидни елементи. Елементи в size-a.
         int deletingEl = this.items[index];
         if (!isValidIndexDel(index)) return -1;
-                                                    // Ако size = 5, но capacity = 7 и искам да изтрия 6 елемент....?
-        shiftLeft(index);                           // ... Само ще ги премества на Ляво ли?
+        // Ако size = 5, но capacity = 7 и искам да изтрия 6 елемент....?
+        shiftLeftTo(index);                           // ... Само ще ги премества на Ляво ли?
         this.size--;
         this.capacity = this.items.length - this.size;
 
         return deletingEl;
     }
 
-    private void shiftRight(int index) {
-        for (int i = this.items.length - 1; i > index; i--) {      // Когато премества на "Дясно" фор-а е "Обратен". ;)
+    private void shiftRightFrom(int index) {
+        for (int i = this.items.length - 1; i > index; i--) {      // Обхожда масива от Дясно на Ляво. ;)
             this.items[i] = this.items[i - 1];
         }
     }
 
-    private void shiftLeft(int index) {               // Когато премества на "Ляво" фор-а е "Нормален". - Ти да видиш...
+    private void shiftLeftTo(int index) {                                         // Обхожда масива от Ляво на Дясно ;)
         for (int i = index; i < this.items.length - 1; i++) {                     // {1,2,3,4,5,6}
             this.items[i] = this.items[i + 1];                    // 1-тo няма на къде да отиде при фор от 0 до "index"?
-        }                                             // Но ако започне от "index" до "items.length" е друга бирата.
+        }                                                 // Но ако започне от "index" до "items.length" е друга бирата.
         this.items[this.items.length - 1] = 0;
     }
 
@@ -96,7 +96,7 @@ public class DynamicArrayS {
         for (int index = 0; index < this.size; index++) {// До -> "this.size". принтира само различните от 0-а елементи.
             System.out.print(this.items[index] + "");            // Принтирай до там докъдето има числа.
             if (index != this.size - 1) {                        // Aко индекса е различен от индекса на последният -
-                System.out.print(", ");                          // - елемент то початай ",".
+                System.out.print(", ");                          // - елемент то печатай ",".
             }
         }
         System.out.println("]");
