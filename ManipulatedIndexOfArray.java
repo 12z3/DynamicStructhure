@@ -1,4 +1,4 @@
-package DynamicsStructhure;
+package dynamicsStructhure;
 
 import training.Methods;
 
@@ -23,6 +23,7 @@ public class ManipulatedIndexOfArray extends Methods {
         Scanner scanner = new Scanner(System.in);
         StringBuilder stb = new StringBuilder();
         String inputString = "";
+
         int count = 0, l = 0, index = 0;
         System.out.println("Enter index number.");
 
@@ -92,7 +93,8 @@ public class ManipulatedIndexOfArray extends Methods {
         int randomIndex = (int) ((Math.random() * (a.length)));
         int[] a1 = new int[1];
         a1[0] = randomIndex;
-        System.out.println(validateInputIndexFromArray(a));;
+        System.out.println(validateInputIndexFromArray(a));
+//        System.out.println(isItANumber());
 
     }
 }
