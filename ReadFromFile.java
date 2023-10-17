@@ -1,4 +1,4 @@
-package DynamicsStructhure;
+package dynamicsStructhure;
 
 import training.Methods;
 
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ReadFromFile extends Methods {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         // String path = "/Users/blagojnikolov/Desktop/Test";
         // File file = new File(path);
 
@@ -25,7 +25,12 @@ public class ReadFromFile extends Methods {
         List<Object> lData = new ArrayList<>();             // В този лист могат да се пазят Всякакви Обекти.
         int i = 0;
 
-        Scanner scanner = new Scanner(file);                // Тук е Тънкият момент.
+        Scanner scanner = null;                // Тук е Тънкият момент.
+        try {
+            scanner = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         while (scanner.hasNextByte()) {
 //            System.out.println(scanner.next());
 //            data[i++] = (scanner.next());
