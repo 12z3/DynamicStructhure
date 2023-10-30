@@ -1,4 +1,4 @@
-package DynamicsStructhure;
+package dynamicsStructhure;
 
 import training.Methods;
 import java.util.Scanner;
