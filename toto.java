@@ -20,7 +20,7 @@ public class toto {
         printResult(result);
         System.out.println("\nMatches:");
         int tmp = checkMatches(result, officialResult, matches);
-        while (!(tmp == matches)) {
+        while ((tmp != matches)) {
             //printResult(result);
             tmp = checkMatches(generateRandomLists(8, 6), officialResult, matches);
             attempts++;
@@ -43,6 +43,7 @@ public class toto {
                     addedDigit.add(newEl);                   // Помни всички генерирани до тук числа.
                 } else {
                     j--;
+                   // addedDigit.add(newEl);                 // -> HashSet<>().
                 }
             }
             result = new ArrayList<>(tmp);
