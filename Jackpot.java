@@ -11,7 +11,7 @@ public class Jackpot {
     public static void main(String[] args) throws IOException {
         int choices = 3, counting = 6, idx = 1;
 
-        List<Integer> officialResult = Arrays.asList(5, 9, 23, 28, 34, 43);
+        List<Integer> officialResult = Arrays.asList(23, 26, 27, 31, 38, 47);
         System.out.println("Последно теглене: " + officialResult + "\n");
 
         List<List<Integer>> newDraw = generateRandomResults(choices, counting, officialResult);
@@ -20,6 +20,8 @@ public class Jackpot {
         String check = (checkResults(newDraw, officialResult) == 1) ? "Дублира се. " : "Няма дублирани елементи.";
         System.out.println(check + "\n");
         saveInFile(newDraw, officialResult);
+
+        checkJackpot(newDraw, officialResult);
     }
 
     private static List<List<Integer>> generateRandomResults(int choices, int counting, List<Integer> official) {
@@ -140,7 +142,7 @@ public class Jackpot {
             leftDays = thisDay - drawDays[0];
             drawDay = "Четвъртък";
         } else if (thisDay > drawDays[0] && thisDay < drawDays[1]) {
-            leftDays = thisDay - drawDays[1];
+            leftDays = (thisDay + 1) - drawDays[1];
             drawDay = "Неделя";
         } else if (thisDay == drawDays[1]) {
             leftDays = 0;
@@ -154,8 +156,7 @@ public class Jackpot {
         String resStrA = ("Днес е " + thisDayStr + ", следващият тираж е в " + drawDay +
                 ". Остават " + Math.abs(leftDays) + printDay);
 
-        String resStrB = ("Днес е " + thisDayStr + ", следващият тираж е в " + drawDay +
-                ". Тиража е днес ");
+        String resStrB = (thisDayStr + " e." + " Ден за ПЕЧАЛБИ!  ;) ");
 
         resStr = (leftDays == 0) ? resStrB : resStrA;
         return resStr;
@@ -176,19 +177,53 @@ public class Jackpot {
 
     private static int checkResults(List<List<Integer>> res, List<Integer> official) {
         Set<Integer> officialSet = new HashSet<>(official);
+        Map<Integer, List<Integer>> rowCol;
         List<Integer> matches;
         int isMatch = -1;
         for (int i = 0; i < res.size(); i++) {
+            rowCol = new TreeMap<>();
             for (int j = 0; j < res.get(i).size(); j++) {
                 matches = new ArrayList<>();
                 if (officialSet.contains(res.get(i).get(j))) {
                     matches.add(res.get(i).get(j));
+                    rowCol.put(i, matches);
                     System.out.println(("Ред: " + (i + 1)) + " Колона: " + j + " - " + matches + " ");
+                    //printMap(rowCol, res.get(i).get(j));
                     isMatch = 1;
                 }
             }
         }
         return isMatch;
+    }
+
+    private static void checkJackpot(List<List<Integer>> yoursSuppose, List<Integer> currentDraw) {
+        List<Integer> matches = null;
+        for (int i = 0; i < yoursSuppose.size(); i++) {
+            Set<Integer> tmp = new HashSet<>(yoursSuppose.get(i));
+            System.out.println("---------------------------");
+            System.out.println(yoursSuppose.get(i));
+            matches = new ArrayList<>();
+            for (int j = 0; j < tmp.size(); j++) {
+                if (tmp.contains(currentDraw.get(j))) {
+                    matches.add(currentDraw.get(j));
+                    System.out.print(("Ред: " + (i + 1)) + " Колона: " + j + " - " + matches + " " + "\n");
+                    System.out.println("---------------------------" + "\n");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    private static void printMatches(List<Integer> matches) {
+        for (int i = 0; i < matches.size(); i++) {
+            System.out.printf("Съвпадения: ");
+        }
+    }
+
+    private static void printMap(Map<Integer, List<Integer>> map, int digit) {
+        for (Map.Entry<Integer, List<Integer>> el : map.entrySet()) {
+            System.out.printf("Ред: %d; -> %d%n", el.getKey(), digit);
+        }
     }
 
     private static int checkResultsOld(List<List<Integer>> res, List<Integer> official) {
