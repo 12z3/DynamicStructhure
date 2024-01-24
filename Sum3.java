@@ -1,4 +1,4 @@
-package dynamicsStructhure;
+package dynamicsStructure;
 import java.util.*;
 
 public class Sum3 {
@@ -13,7 +13,7 @@ public class Sum3 {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> tmp;
 
-        for (int i = 0; i < nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {                  // -1, 0, 1, 2, -1, -4
             Set<Integer> midDigits = new HashSet<>();
             for (int j = i + 1; j < nums.length; j++) {
                 int xDigits = sum - (nums[i] + nums[j]);
