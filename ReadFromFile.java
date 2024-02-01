@@ -1,4 +1,4 @@
-package dynamicsStructhure;
+package dynamicsStructure;
 
 import training.Methods;
 
